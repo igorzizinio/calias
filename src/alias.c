@@ -97,31 +97,37 @@ void add_alias(const char* input) {
 
 
   fclose(file);
-
-  printf("salvo com sucesso!");
-
-
 }
 
 
 Alias parse_alias(const char *input) {
     Alias a;
-    char *equal_sign = strchr(input, '=');
+    const char *prefix = "alias ";
+    size_t prefix_len = strlen(prefix);
 
-    size_t name_len = equal_sign - input;
+    const char *start = input;
+    if (strncmp(input, prefix, prefix_len) == 0) {
+        start = input + prefix_len;
+    }
 
-    strncpy(a.name, input, name_len);
+    char *equal_sign = strchr(start, '=');
+    if (equal_sign == NULL) {
+        a.name[0] = '\0';
+        a.command[0] = '\0';
+        return a;
+    }
+
+    size_t name_len = equal_sign - start;
+    strncpy(a.name, start, name_len);
     a.name[name_len] = '\0';
 
     const char *cmd = equal_sign + 1;
-
     strncpy(a.command, cmd, MAX_COMMAND - 1);
     a.command[MAX_COMMAND - 1] = '\0';
-
 
     return a;
 }
 
 void alias_to_str(Alias alias, char *buffer, size_t buffer_size) {
-  snprintf(buffer, buffer_size, "%s=%s", alias.name, alias.command);
+  snprintf(buffer, buffer_size, "alias %s=%s", alias.name, alias.command);
 }

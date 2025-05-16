@@ -44,6 +44,8 @@ int main(int argc, char *argv[])
         add_alias(alias);
       }
 
+      printf("Aliases added, you should restart your shell now, or use 'source ~/.caliases'");
+
 
       // TODO: create alias logic here!
       //

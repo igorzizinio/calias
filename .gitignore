@@ -1,0 +1,21 @@
+# binaries
+*.out
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+
+# executable
+calias
+
+# build dirs
+/build
+/bin
+/dist
+
+# dependency files
+*.d
+

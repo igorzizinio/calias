@@ -10,7 +10,7 @@
 
 
 void list_aliases() {
-  printf("Listar aliases aqui!! \n");
+  printf("Listing your CAliases: \n\n");
 
 
   const char *home = getenv("HOME");
@@ -29,7 +29,7 @@ void list_aliases() {
 
   while (fgets(line, sizeof(line), file)) {
     Alias a = parse_alias(line);
-    printf("Alias: %s -> %s", a.name, a.command);
+    printf("%s -> %s", a.name, a.command);
   }
 
   fclose(file);

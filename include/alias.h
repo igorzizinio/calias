@@ -1,6 +1,21 @@
 #ifndef ALIAS_H
 #define ALIAS_H
 
+
+// TODO: in future it can be dynamic! :)
+
+#define MAX_ALIAS_NAME 64
+#define MAX_COMMAND 256
+#define MAX_ALIASES 100
+
+typedef struct Alias {
+  char name[MAX_ALIAS_NAME];
+  char command[MAX_COMMAND]
+};
+
 void list_aliases();
+void add_alias(const char* alias);
+Alias parse_alias(const char* input);
+void alias_to_str(Alias a, char *buffer, size_t buffer_size);
 
 #endif

@@ -10,8 +10,10 @@ int main(int argc, char *argv[])
   printf("\n");
 
   // print all user arguments (just for development)
-  for (int i = 0; i < argc; i++) {
-    printf("arg[%d] = %s \n", i, argv[i]);
+  if(0) {
+    for (int i = 0; i < argc; i++) {
+      printf("arg[%d] = %s \n", i, argv[i]);
+    }
   }
 
   // check if the program was ran with at least 1 arg
@@ -34,6 +36,15 @@ int main(int argc, char *argv[])
       printf("You should pass the alias in format:\n\n alias=\"command\" \n");
       return 1;
     } else {
+
+
+      for (int i = 2; i < argc; i++) {
+        char* alias = argv[i];
+
+        add_alias(alias);
+      }
+
+
       // TODO: create alias logic here!
       //
       // check if there is mutilple aliases, so check all and add then to a file
@@ -42,9 +53,7 @@ int main(int argc, char *argv[])
       // create a ".calias" containing aliases created by calias
       //
       // then, users should import it in bashrc/zshrc file
-      //
 
-      printf("hmmm daora, bom aliase meu patrao :+1: \n");
     }
   }
   return EXIT_SUCCESS;

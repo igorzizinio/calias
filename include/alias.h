@@ -8,10 +8,10 @@
 #define MAX_COMMAND 256
 #define MAX_ALIASES 100
 
-typedef struct Alias {
+typedef struct {
   char name[MAX_ALIAS_NAME];
   char command[MAX_COMMAND]
-};
+} Alias;
 
 void list_aliases();
 void add_alias(const char* alias);

@@ -15,6 +15,7 @@ typedef struct {
 
 void list_aliases();
 void add_alias(const char* alias);
+void remove_alias(const char* input);
 Alias parse_alias(const char* input);
 void alias_to_str(Alias a, char *buffer, size_t buffer_size);
 

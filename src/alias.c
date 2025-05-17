@@ -35,6 +35,58 @@ void list_aliases() {
   fclose(file);
 }
 
+void remove_alias(const char* input) {
+
+  const char *home = getenv("HOME");
+  
+  char path[512];
+
+  snprintf(path, sizeof(path), "%s/%s", home, RC_FILE);
+
+  FILE* file = fopen(path, "r");
+
+
+  if (file == NULL) {
+    // TODO: error handling
+    return;
+  }
+
+
+  Alias aliases[100];
+  char line[MAX_LINE];
+  int alias_index = 0;
+  while(fgets(line, sizeof(line), file)) {
+    line[strcspn(line, "\n")] = '\0';
+
+    Alias a = parse_alias(line);
+
+
+    if (!(strcmp(a.name, input) == 0)) {
+      aliases[alias_index] = a;
+      alias_index++;
+    }
+
+  }
+
+  fclose(file);
+
+
+  file = fopen(path, "w");
+
+  if (file == NULL) {
+    // TODO: TRATAR ERROS
+    return;
+  }
+
+  for (int i = 0; i < alias_index; i++) {
+    char buf[512];
+    alias_to_str(aliases[i], buf, sizeof(buf));
+    fprintf(file, "%s\n", buf);
+  }
+
+  fclose(file);
+}
+
 void add_alias(const char* input) {
   Alias alias = parse_alias(input);
 
@@ -42,7 +94,7 @@ void add_alias(const char* input) {
 
   const char *home = getenv("HOME");
   char path[512];
-  snprintf(path, sizeof(path), "%s/%s", home, RC_FILE);
+snprintf(path, sizeof(path), "%s/%s", home, RC_FILE);
 
   FILE* file = fopen(path, "r");
 

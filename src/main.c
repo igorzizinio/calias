@@ -31,6 +31,18 @@ int main(int argc, char *argv[])
     list_aliases();
   }
 
+  if (strcmp(argv[1], "remove") == 0) {
+    if (argc < 3) {
+        printf("You should pass at least one alias\n");
+        return 1;
+    }
+
+    for (int i = 2; i < argc; i++) {
+      char *alias = argv[i];
+      remove_alias(alias);
+    }
+  }
+
   if (strcmp(argv[1], "add") == 0){
     if (argc < 3) {
       printf("You should pass the alias in format:\n\n alias=\"command\" \n");
